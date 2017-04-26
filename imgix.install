@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the imgix module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function imgix_uninstall() {
+
+}
+
+/**
+ * Implements hook_schema().
+ */
+function imgix_schema() {
+  $schema = array();
+
+  $schema['imgix_styles'] = array(
+    'description' => 'Stores configuration options for Imgix styles.',
+    'fields' => array(
+      'isid' => array(
+        'description' => 'The primary identifier for an Imgix style.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'The style machine name.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'label' => array(
+        'description' => 'The style administrative name.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'configuration' => array(
+        'description' => 'The configuration data for the style.',
+        'type' => 'blob',
+        'not null' => TRUE,
+        'size' => 'big',
+        'serialize' => TRUE,
+      ),
+    ),
+    'primary key' => array('isid'),
+    'unique keys' => array(
+      'name' => array('name'),
+    ),
+  );
+
+  return $schema;
+}

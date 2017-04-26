@@ -1,0 +1,6 @@
+name = Imgix
+description = Implements Imgix - Real-time image processing and CDN
+core = 7.x
+version = "7.x-1.0"
+configure = admin/config/media/imgix-styles
+dependencies[] = image
